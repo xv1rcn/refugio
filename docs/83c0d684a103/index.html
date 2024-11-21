@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>2024 NNU Freshman Contest C++ 题解 | Refugio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="本文的视频题解可以在 哔哩哔哩 找到.">
+  
+  
+  
+    <link rel="shortcut icon" href="../img/favicon.png">
+  
+  <link rel="stylesheet" href="../css/style.css">
+  
+    <link rel="stylesheet" href="../fancybox/jquery.fancybox-1.3.4.css">
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div id="nav-outer">
+  <nav id="main-nav" class="outer">
+    <a id="main-nav-toggle" class="nav-icon"></a>
+    
+      <a class="main-nav-link" href="../index.html">Home</a>
+    
+      <a class="main-nav-link" href="../archives">Archives</a>
+    
+      <a class="main-nav-link" href="../about">About</a>
+    
+    <div class="main-nav-space-between"></div>
+    
+  </nav>
+</div>
+<div id="header-title">
+  <h1 id="logo-wrap">
+    <a href="../index.html" id="logo">Refugio</a>
+  </h1>
+  
+</div>
+
+      <div id="content" class="outer">
+        <section id="main"><article id="post-2024 NNU Freshman Contest C++ 题解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="" class="article-date">
+  <time class="dt-published" datetime="2024-11-19T16:00:00.000Z" itemprop="datePublished">November 20th 2024</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="../categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>►<a class="article-category-link" href="../categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      2024 NNU Freshman Contest C++ 题解
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>本文的视频题解可以在 <a href="https://www.bilibili.com/video/BV1VbUHY5E8T/">哔哩哔哩</a> 找到.</p>
+<span id="more"></span>
+<p><strong>A. Save your tears for the day so far away</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">check</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> &amp;a, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> &amp;b, <span class="hljs-keyword">const</span> vector&lt;<span class="hljs-keyword">char</span>&gt; &amp;v)</span> </span>&#123;
+    <span class="hljs-keyword">int</span> d = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> it: v)
+        <span class="hljs-keyword">if</span> (d &amp; <span class="hljs-number">1</span>) &#123;
+            <span class="hljs-keyword">if</span> (it == a)
+                ++d;
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            <span class="hljs-keyword">if</span> (it == b)
+                ++d;
+        &#125;
+    <span class="hljs-keyword">if</span> (d &amp; <span class="hljs-number">1</span>)
+        --d;
+    <span class="hljs-keyword">return</span> d;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), cout.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+    <span class="hljs-keyword">int</span> n;
+    cin &gt;&gt; n;
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">char</span>&gt; <span class="hljs-title">v</span><span class="hljs-params">(n)</span></span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i)
+        cin &gt;&gt; v[i];
+    <span class="hljs-keyword">int</span> ans = INT_MAX; <span class="hljs-comment">// ans = n;</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">char</span> a = <span class="hljs-string">&#x27;a&#x27;</span>; a &lt;= <span class="hljs-string">&#x27;z&#x27;</span>; ++a)
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">char</span> b = <span class="hljs-string">&#x27;a&#x27;</span>; b &lt;= <span class="hljs-string">&#x27;z&#x27;</span>; ++b)
+            ans = <span class="hljs-built_in">min</span>(ans, n - <span class="hljs-built_in">check</span>(a, b, v));
+    cout &lt;&lt; ans;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre></div>
+<p><strong>B. To irrigate the wilderness that’s still asleep</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), cout.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+    <span class="hljs-keyword">int</span> n, k;
+    cin &gt;&gt; n &gt;&gt; k;
+    vector&lt;pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; &gt; <span class="hljs-built_in">v</span>(k);
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">pos</span><span class="hljs-params">(k)</span></span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; k; ++i) &#123;
+        cin &gt;&gt; v[i].first &gt;&gt; v[i].second;
+        pos[i] = v[i].second;
+    &#125;
+    queue&lt;pair&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;, <span class="hljs-keyword">int</span>&gt; &gt; q;
+    q.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">make_pair</span>(pos, <span class="hljs-number">0</span>));
+    set&lt;vector&lt;<span class="hljs-keyword">int</span>&gt; &gt; vis;
+    vis.<span class="hljs-built_in">insert</span>(pos);
+    <span class="hljs-keyword">while</span> (!q.<span class="hljs-built_in">empty</span>()) &#123;
+        <span class="hljs-keyword">auto</span> cur_pos = q.<span class="hljs-built_in">front</span>().first;
+        <span class="hljs-keyword">int</span> cur_rot = q.<span class="hljs-built_in">front</span>().second;
+        q.<span class="hljs-built_in">pop</span>();
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">all_of</span>(cur_pos.<span class="hljs-built_in">begin</span>(), cur_pos.<span class="hljs-built_in">end</span>(), [](<span class="hljs-keyword">int</span> c) &#123; <span class="hljs-keyword">return</span> c == <span class="hljs-number">1</span>; &#125;)) &#123;
+            cout &lt;&lt; cur_rot;
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        &#125;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; k - <span class="hljs-number">1</span>; ++i)
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = i + <span class="hljs-number">1</span>; j &lt; k; ++j) &#123;
+                <span class="hljs-keyword">auto</span> new_pos = cur_pos;
+                new_pos[i] = (new_pos[i] - <span class="hljs-number">1</span> + v[i].first) % n + <span class="hljs-number">1</span>;
+                new_pos[j] = (new_pos[j] - <span class="hljs-number">1</span> + v[j].first) % n + <span class="hljs-number">1</span>;
+                <span class="hljs-keyword">if</span> (vis.<span class="hljs-built_in">find</span>(new_pos) == vis.<span class="hljs-built_in">end</span>()) &#123;
+                    vis.<span class="hljs-built_in">insert</span>(new_pos);
+                    q.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">make_pair</span>(new_pos, cur_rot + <span class="hljs-number">2</span>));
+                &#125;
+            &#125;
+    &#125;
+    cout &lt;&lt; <span class="hljs-number">-1</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre></div>
+<p><strong>C. In the world waiting to be lit</strong></p>
+<p><strong>D. To spread over the riverbeds so dry and dead</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+
+<span class="hljs-function">ll <span class="hljs-title">gcd</span><span class="hljs-params">(<span class="hljs-keyword">const</span> ll a, <span class="hljs-keyword">const</span> ll b)</span> </span>&#123;
+    <span class="hljs-keyword">return</span> b &gt; <span class="hljs-number">0</span> ? <span class="hljs-built_in">gcd</span>(b, a % b) : a;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">exgcd</span><span class="hljs-params">(<span class="hljs-keyword">const</span> ll a, <span class="hljs-keyword">const</span> ll b, ll &amp;x, ll &amp;y)</span> </span>&#123;
+    <span class="hljs-keyword">if</span> (b == <span class="hljs-number">0</span>) &#123;
+        x = <span class="hljs-number">1</span>, y = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">return</span>;
+    &#125;
+    <span class="hljs-built_in">exgcd</span>(b, a % b, y, x);
+    y -= a / b * x;
+&#125;
+
+<span class="hljs-function">ll <span class="hljs-title">solve</span><span class="hljs-params">(ll n, ll r, <span class="hljs-keyword">const</span> ll a, <span class="hljs-keyword">const</span> ll g)</span> </span>&#123;
+    ll b = n - a;
+    <span class="hljs-keyword">if</span> (b % g != <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    n /= g, r /= g, b /= g;
+    ll x, y;
+    <span class="hljs-built_in">exgcd</span>(r, n, x, y);
+    <span class="hljs-keyword">while</span> (x &lt; <span class="hljs-number">0</span>)
+        x += n;
+    <span class="hljs-keyword">return</span> b * x % n;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), cout.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+    <span class="hljs-keyword">int</span> n, k;
+    cin &gt;&gt; n &gt;&gt; k;
+    <span class="hljs-function">vector&lt;ll&gt; <span class="hljs-title">r</span><span class="hljs-params">(k)</span>, <span class="hljs-title">a</span><span class="hljs-params">(k)</span>, <span class="hljs-title">p</span><span class="hljs-params">(k)</span>, <span class="hljs-title">q</span><span class="hljs-params">(k)</span></span>;
+    ll res = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; k; ++i) &#123;
+        cin &gt;&gt; r[i] &gt;&gt; a[i];
+        --a[i];
+        <span class="hljs-keyword">const</span> ll g = <span class="hljs-built_in">gcd</span>(n, r[i]);
+        p[i] = <span class="hljs-built_in">solve</span>(n, r[i], a[i], g);
+        q[i] = n / g;
+        <span class="hljs-keyword">if</span> (p[i] == <span class="hljs-number">-1</span>) &#123;
+            cout &lt;&lt; <span class="hljs-number">-1</span>;
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        &#125;
+        res += p[i];
+    &#125;
+    <span class="hljs-keyword">if</span> (res % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) &#123;
+        cout &lt;&lt; res;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    &#125;
+    <span class="hljs-keyword">int</span> idx = <span class="hljs-number">0</span>;
+    ll m = LONG_LONG_MAX;
+    <span class="hljs-keyword">while</span> (p[idx] % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)
+        ++idx;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; k; ++i) &#123;
+        <span class="hljs-keyword">if</span> (i == idx)
+            <span class="hljs-keyword">continue</span>;
+        <span class="hljs-keyword">if</span> (q[i] % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>)
+            m = <span class="hljs-built_in">min</span>(m, q[i]);
+    &#125;
+    <span class="hljs-keyword">if</span> (m != LONG_LONG_MAX) &#123;
+        cout &lt;&lt; res + m;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    &#125;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = idx + <span class="hljs-number">1</span>; i &lt; k; ++i)
+        <span class="hljs-keyword">if</span> (p[i] % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>) &#123;
+            cout &lt;&lt; res + q[idx];
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        &#125;
+    cout &lt;&lt; <span class="hljs-number">-1</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre></div>
+<p><strong>E. Let ships that ran aground re-launch their sails</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), cout.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+    <span class="hljs-keyword">int</span> a, b, c;
+    cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+    <span class="hljs-keyword">if</span> (b &lt; a)
+        cout &lt;&lt; <span class="hljs-number">-1</span>;
+    <span class="hljs-keyword">else</span>
+        cout &lt;&lt; <span class="hljs-built_in">max</span>(c - a, <span class="hljs-number">0</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre></div>
+<p><strong>F. Ah how I long to embrace</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">input_type</span> &#123;</span> CORRECT = <span class="hljs-number">-1</span>, NOT_FACTOR, FACTOR &#125;;
+
+<span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">output_type</span> &#123;</span> QUERY, ADD, SUBMIT &#125;;
+
+<span class="hljs-function">input_type <span class="hljs-title">input</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-keyword">int</span> i;
+    cin &gt;&gt; i;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">static_cast</span>&lt;input_type&gt;(i);
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">output</span><span class="hljs-params">(<span class="hljs-keyword">const</span> output_type &amp;i, <span class="hljs-keyword">const</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> &amp;n)</span> </span>&#123;
+    <span class="hljs-keyword">char</span> c = <span class="hljs-string">&#x27; &#x27;</span>;
+    <span class="hljs-built_in"><span class="hljs-keyword">switch</span></span> (i) &#123;
+        <span class="hljs-keyword">case</span> QUERY:
+            c = <span class="hljs-string">&#x27;?&#x27;</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> ADD:
+            c = <span class="hljs-string">&#x27;+&#x27;</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> SUBMIT:
+            c = <span class="hljs-string">&#x27;!&#x27;</span>;
+            <span class="hljs-keyword">break</span>;
+    &#125;
+    cout &lt;&lt; c &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; n &lt;&lt; endl;
+    <span class="hljs-built_in">fflush</span>(stdout);
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), cout.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+    <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> p = <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;
+        <span class="hljs-built_in">output</span>(QUERY, p);
+        <span class="hljs-built_in"><span class="hljs-keyword">switch</span></span> (<span class="hljs-built_in">input</span>()) &#123;
+            <span class="hljs-keyword">case</span> CORRECT:
+                <span class="hljs-built_in">output</span>(SUBMIT, p);
+                <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">case</span> NOT_FACTOR:
+                <span class="hljs-built_in">output</span>(ADD, p / <span class="hljs-number">2</span>);
+            <span class="hljs-keyword">case</span> FACTOR:
+                p &lt;&lt;= <span class="hljs-number">1</span>;
+                <span class="hljs-keyword">break</span>;
+        &#125;
+    &#125;
+&#125;
+</code></pre></div>
+<p><strong>G. The future breaking out of shades from the past</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">input_type</span> &#123;</span> CORRECT = <span class="hljs-number">-1</span>, NOT_FACTOR, FACTOR &#125;;
+
+<span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">output_type</span> &#123;</span> QUERY, ADD, SUBMIT &#125;;
+
+<span class="hljs-function">input_type <span class="hljs-title">input</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-keyword">int</span> i;
+    cin &gt;&gt; i;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">static_cast</span>&lt;input_type&gt;(i);
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">output</span><span class="hljs-params">(<span class="hljs-keyword">const</span> output_type &amp;i, <span class="hljs-keyword">const</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> &amp;n)</span> </span>&#123;
+    <span class="hljs-keyword">char</span> c = <span class="hljs-string">&#x27; &#x27;</span>;
+    <span class="hljs-built_in"><span class="hljs-keyword">switch</span></span> (i) &#123;
+        <span class="hljs-keyword">case</span> QUERY:
+            c = <span class="hljs-string">&#x27;?&#x27;</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> ADD:
+            c = <span class="hljs-string">&#x27;+&#x27;</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> SUBMIT:
+            c = <span class="hljs-string">&#x27;!&#x27;</span>;
+            <span class="hljs-keyword">break</span>;
+    &#125;
+    cout &lt;&lt; c &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; n &lt;&lt; endl;
+    <span class="hljs-built_in">fflush</span>(stdout);
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), cout.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+    <span class="hljs-built_in">output</span>(ADD, <span class="hljs-number">0b11111</span>);
+    <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> p = <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;
+        <span class="hljs-built_in">output</span>(QUERY, p);
+        <span class="hljs-built_in"><span class="hljs-keyword">switch</span></span> (<span class="hljs-built_in">input</span>()) &#123;
+            <span class="hljs-keyword">case</span> CORRECT:
+                <span class="hljs-built_in">output</span>(SUBMIT, p);
+                <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">case</span> NOT_FACTOR:
+                <span class="hljs-built_in">output</span>(ADD, p / <span class="hljs-number">2</span>);
+            <span class="hljs-keyword">case</span> FACTOR:
+                p &lt;&lt;= <span class="hljs-number">1</span>;
+                <span class="hljs-keyword">break</span>;
+        &#125;
+    &#125;
+&#125;
+</code></pre></div>
+<p><strong>H. Still ablaze</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), cout.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+    <span class="hljs-keyword">int</span> n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">v</span><span class="hljs-params">(n)</span>, <span class="hljs-title">w</span><span class="hljs-params">(n)</span>, <span class="hljs-title">dp</span><span class="hljs-params">(m + <span class="hljs-number">1</span>)</span></span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i)
+        cin &gt;&gt; v[i] &gt;&gt; w[i];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i)
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = m; j &gt;= v[i]; --j)
+            dp[j] = <span class="hljs-built_in">max</span>(dp[j], dp[j - v[i]] + w[i]);
+    cout &lt;&lt; dp[m];
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre></div>
+<p><strong>I. Seeds bear new life when flowers dare to fade</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">constexpr</span> <span class="hljs-keyword">int</span> MAX_W = <span class="hljs-number">100</span> * <span class="hljs-number">1000</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), cout.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+    <span class="hljs-keyword">int</span> n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>&gt; <span class="hljs-title">v</span><span class="hljs-params">(n)</span>, <span class="hljs-title">w</span><span class="hljs-params">(n)</span>, <span class="hljs-title">dp</span><span class="hljs-params">(MAX_W + <span class="hljs-number">1</span>)</span></span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= MAX_W; ++i)
+        dp[i] = INT_MAX;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i)
+        cin &gt;&gt; v[i] &gt;&gt; w[i];
+    <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i)
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = MAX_W; j &gt;= w[i]; --j) &#123;
+            dp[j] = <span class="hljs-built_in">min</span>(dp[j], dp[j - w[i]] + v[i]);
+            <span class="hljs-keyword">if</span> (dp[j] &lt;= m)
+                ans = <span class="hljs-built_in">max</span>(ans, j);
+        &#125;
+    cout &lt;&lt; ans;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre></div>
+<p><strong>J. Petals linger about</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+<span class="hljs-keyword">typedef</span> pair&lt;ll, ll&gt; pll;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> idx, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> &amp;n, <span class="hljs-keyword">const</span> ll now_v, <span class="hljs-keyword">const</span> ll now_w, vector&lt;pll&gt; &amp;p,
+         <span class="hljs-keyword">const</span> vector&lt;ll&gt; &amp;v, <span class="hljs-keyword">const</span> vector&lt;ll&gt; &amp;w, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> &amp;m)</span> </span>&#123;
+    <span class="hljs-keyword">if</span> (now_v &gt; m)
+        <span class="hljs-keyword">return</span>;
+    <span class="hljs-keyword">if</span> (idx == n) &#123;
+        p.<span class="hljs-built_in">emplace_back</span>(now_v, now_w);
+        <span class="hljs-keyword">return</span>;
+    &#125;
+    <span class="hljs-built_in">dfs</span>(idx + <span class="hljs-number">1</span>, n, now_v + v[idx], now_w + w[idx], p, v, w, m);
+    <span class="hljs-built_in">dfs</span>(idx + <span class="hljs-number">1</span>, n, now_v, now_w, p, v, w, m);
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), cout.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+    <span class="hljs-keyword">int</span> n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    <span class="hljs-function">vector&lt;ll&gt; <span class="hljs-title">v</span><span class="hljs-params">(n)</span>, <span class="hljs-title">w</span><span class="hljs-params">(n)</span></span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i)
+        cin &gt;&gt; v[i] &gt;&gt; w[i];
+    vector&lt;pll&gt; pre, suf;
+    <span class="hljs-built_in">dfs</span>(<span class="hljs-number">0</span>, n / <span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, pre, v, w, m);
+    <span class="hljs-built_in">dfs</span>(n / <span class="hljs-number">2</span>, n, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, suf, v, w, m);
+    <span class="hljs-built_in">sort</span>(suf.<span class="hljs-built_in">begin</span>(), suf.<span class="hljs-built_in">end</span>());
+    <span class="hljs-function">vector&lt;ll&gt; <span class="hljs-title">max_w</span><span class="hljs-params">(suf.size())</span></span>;
+    max_w[<span class="hljs-number">0</span>] = suf[<span class="hljs-number">0</span>].second;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; suf.<span class="hljs-built_in">size</span>(); ++i)
+        max_w[i] = <span class="hljs-built_in">max</span>(max_w[i - <span class="hljs-number">1</span>], suf[i].second);
+    ll ans = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;it: pre) &#123;
+        <span class="hljs-keyword">int</span> idx = <span class="hljs-built_in">upper_bound</span>(suf.<span class="hljs-built_in">begin</span>(), suf.<span class="hljs-built_in">end</span>(),
+                              <span class="hljs-built_in">make_pair</span>(m - it.first, LONG_LONG_MAX)) - suf.<span class="hljs-built_in">begin</span>();
+        <span class="hljs-keyword">if</span> (idx == <span class="hljs-number">0</span>) &#123;
+            ans = <span class="hljs-built_in">max</span>(ans, it.second);
+            <span class="hljs-keyword">continue</span>;
+        &#125;
+        ans = <span class="hljs-built_in">max</span>(ans, it.second + max_w[idx - <span class="hljs-number">1</span>]);
+    &#125;
+    cout &lt;&lt; ans;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre></div>
+<p><strong>K. Awaiting one last dance</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), cout.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+    <span class="hljs-keyword">int</span> n;
+    cin &gt;&gt; n;
+    string s1, s2;
+    cin &gt;&gt; s1 &gt;&gt; s2;
+    <span class="hljs-function">vector <span class="hljs-title">cnt</span><span class="hljs-params">(<span class="hljs-number">128</span>, <span class="hljs-number">0</span>)</span></span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span> c: s1)
+        ++cnt[c];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span> c: s2)
+        --cnt[c];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span> i: cnt)
+        <span class="hljs-keyword">if</span> (i != <span class="hljs-number">0</span>) &#123;
+            cout &lt;&lt; <span class="hljs-number">-1</span>;
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        &#125;
+    vector&lt;pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; &gt; ans;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) &#123;
+        <span class="hljs-keyword">if</span> (s1[i] == s2[i])
+            <span class="hljs-keyword">continue</span>;
+        <span class="hljs-keyword">auto</span> it = s2.<span class="hljs-built_in">find</span>(s1[i], i);
+        <span class="hljs-built_in">reverse</span>(s2.<span class="hljs-built_in">begin</span>() + i, s2.<span class="hljs-built_in">begin</span>() + it + <span class="hljs-number">1</span>);
+        ans.<span class="hljs-built_in">emplace_back</span>(i + <span class="hljs-number">1</span>, it + <span class="hljs-number">1</span>);
+    &#125;
+    cout &lt;&lt; ans.<span class="hljs-built_in">size</span>() &lt;&lt; endl;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span> &amp;[l, r]: ans)
+        cout &lt;&lt; <span class="hljs-string">&quot;2 &quot;</span> &lt;&lt; l &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; r &lt;&lt; endl;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre></div>
+<p><strong>L. Shaking off all the dust from the past</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+
+<span class="hljs-keyword">constexpr</span> ll MOD = <span class="hljs-number">998244353</span>;
+
+<span class="hljs-function">ll <span class="hljs-title">quick_pow</span><span class="hljs-params">(ll a, ll b, <span class="hljs-keyword">const</span> ll &amp;m)</span> </span>&#123;
+    ll ans = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">while</span> (b &gt; <span class="hljs-number">0</span>) &#123;
+        <span class="hljs-keyword">if</span> (b &amp; <span class="hljs-number">1</span>)
+            ans = ans * a % m;
+        b &gt;&gt;= <span class="hljs-number">1</span>;
+        a = a * a % m;
+    &#125;
+    <span class="hljs-keyword">return</span> ans % m;
+&#125;
+
+<span class="hljs-function">ll <span class="hljs-title">inv</span><span class="hljs-params">(<span class="hljs-keyword">const</span> ll &amp;a, <span class="hljs-keyword">const</span> ll &amp;m)</span> </span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">quick_pow</span>(a, m - <span class="hljs-number">2</span>, m);
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), cout.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+    <span class="hljs-keyword">int</span> n;
+    cin &gt;&gt; n;
+    ll k = <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n - <span class="hljs-number">1</span>; ++i)
+        k = (k + <span class="hljs-number">2</span> * <span class="hljs-built_in">inv</span>(i, MOD)) % MOD;
+    cout &lt;&lt; k;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre></div>
+<p><strong>M. New stories have yet to start</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), cout.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>), ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> a, b, c, d;
+    cin &gt;&gt; a &gt;&gt; b &gt;&gt; c &gt;&gt; d;
+    cout &lt;&lt; a * b * c * d;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/%E6%9C%AC%E7%A7%91/" rel="tag">本科</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../e46289871782/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          南师大2024年新生赛（第三场）Python 题解
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/%E6%95%B0%E5%AD%A6/">数学</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/%E6%95%B0%E5%AD%A6/%E6%A6%82%E7%8E%87%E8%AE%BA/">概率论</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/%E6%96%87%E5%AD%A6/">文学</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/%E6%96%87%E5%AD%A6/%E4%B8%AD%E6%96%87%E9%98%85%E8%AF%BB/">中文阅读</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="../categories/%E6%96%87%E5%AD%A6/%E9%9A%8F%E7%AC%94/">随笔</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="../categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/Python/">Python</a><span class="category-list-count">3</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../tags/%E6%9C%AC%E7%A7%91/" rel="tag">本科</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/%E9%AB%98%E4%B8%AD/" rel="tag">高中</a><span class="tag-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+        <p>Do it. With love.</p>
+      
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="../about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/jquery-1.4.3.min.js"></script>
+
+<script src="../fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+
+
+<script src="../js/script.js"></script>
+
+
+
+
+
+
+<script>
+  MathJax = {
+    options: {
+      enableMenu: false
+    },
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    }
+  };
+</script>
+<!-- <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+    CommonHTML: {
+      linebreaks: false
+    }
+  });
+  </script> -->
+<script type="text/javascript" id="MathJax-script" async
+  src="../mathjax/tex-chtml.js">
+</script>
+<!-- <script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
+</script> -->
+
+
+
+  </div>
+</body>
+</html>
