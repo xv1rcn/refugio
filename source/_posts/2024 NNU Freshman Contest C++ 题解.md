@@ -435,6 +435,8 @@ int main() {
 
 **L. Shaking off all the dust from the past**
 
+数学推导过程[见此](https://m.xv1r.cn/s/raRdiRB3K4PWseK).
+
 ``` cpp
 #include <bits/stdc++.h>
 using namespace std;
