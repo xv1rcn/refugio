@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>南师大 2024 年新生赛 (第二场) Python 题解 | Refugio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="本文的视频题解可以在 哔哩哔哩 找到.">
+  
+  
+  
+    <link rel="shortcut icon" href="../img/favicon.png">
+  
+  <link rel="stylesheet" href="../css/style.css">
+  
+    <link rel="stylesheet" href="../fancybox/jquery.fancybox-1.3.4.css">
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div id="nav-outer">
+  <nav id="main-nav" class="outer">
+    <a id="main-nav-toggle" class="nav-icon"></a>
+    
+      <a class="main-nav-link" href="../index.html">Home</a>
+    
+      <a class="main-nav-link" href="../archives">Archives</a>
+    
+      <a class="main-nav-link" href="../about">About</a>
+    
+    <div class="main-nav-space-between"></div>
+    
+  </nav>
+</div>
+<div id="header-title">
+  <h1 id="logo-wrap">
+    <a href="../index.html" id="logo">Refugio</a>
+  </h1>
+  
+</div>
+
+      <div id="content" class="outer">
+        <section id="main"><article id="post-南师大 2024 年新生赛 (第二场) Python 题解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="" class="article-date">
+  <time class="dt-published" datetime="2024-08-31T16:00:00.000Z" itemprop="datePublished">September 1st 2024</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="../categories/%E6%95%99%E5%AD%A6/">教学</a>►<a class="article-category-link" href="../categories/%E6%95%99%E5%AD%A6/%E6%9C%AC%E7%A7%91/">本科</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      南师大 2024 年新生赛 (第二场) Python 题解
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>本文的视频题解可以在 <a href="https://www.bilibili.com/video/BV1vgsMevEL1/">哔哩哔哩</a> 找到.</p>
+<span id="more"></span>
+<p><strong>A. 为了盐城鸡蛋饼什么都干得出来 (Easy Version)</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">solution</span>():</span>
+    n, m = <span class="hljs-built_in">map</span>(<span class="hljs-built_in">int</span>, <span class="hljs-built_in">input</span>().split())
+    c = n * m
+    u, d = c // <span class="hljs-number">2</span>, c % <span class="hljs-number">2</span>
+    <span class="hljs-built_in">print</span>(u, d)
+    <span class="hljs-keyword">return</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>())):
+        solution()
+    <span class="hljs-keyword">return</span>
+
+main()
+</code></pre></div>
+<p><strong>B. 依我看<span class="bd-box"><h-char class="bd bd-beg"><h-inner>，</h-inner></h-char></span>小逝一桩 (Easy Version)</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">construct</span>(<span class="hljs-params">s</span>):</span>
+    is_healing = s[<span class="hljs-number">0</span>] == <span class="hljs-string">&quot;A&quot;</span>
+    <span class="hljs-keyword">if</span> s[<span class="hljs-number">1</span>] == <span class="hljs-string">&quot;A&quot;</span>:
+        <span class="hljs-keyword">return</span> is_healing, <span class="hljs-number">1</span>
+    <span class="hljs-keyword">elif</span> s[<span class="hljs-number">1</span>] == <span class="hljs-string">&quot;J&quot;</span>:
+        <span class="hljs-keyword">return</span> is_healing, <span class="hljs-number">11</span>
+    <span class="hljs-keyword">elif</span> s[<span class="hljs-number">1</span>] == <span class="hljs-string">&quot;Q&quot;</span>:
+        <span class="hljs-keyword">return</span> is_healing, <span class="hljs-number">12</span>
+    <span class="hljs-keyword">elif</span> s[<span class="hljs-number">1</span>] == <span class="hljs-string">&quot;K&quot;</span>:
+        <span class="hljs-keyword">return</span> is_healing, <span class="hljs-number">13</span>
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">return</span> is_healing, <span class="hljs-built_in">int</span>(s[<span class="hljs-number">1</span>:])
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    deck_cards = []
+    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>())):
+        deck_cards.append(construct(<span class="hljs-built_in">input</span>()))
+    hp, dmg, heal = <span class="hljs-number">3</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>
+    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+        hp -= <span class="hljs-number">1</span>
+        <span class="hljs-keyword">if</span> heal:
+            hp += <span class="hljs-number">1</span>
+            heal -= <span class="hljs-number">1</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> hp:
+            <span class="hljs-keyword">break</span>
+        dmg += <span class="hljs-number">1</span>
+        drawn_cards = []
+        <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>):
+            drawn_cards.append(deck_cards.pop(<span class="hljs-number">0</span>))
+        drawn_cards = <span class="hljs-built_in">sorted</span>([card[<span class="hljs-number">1</span>] <span class="hljs-keyword">for</span> card <span class="hljs-keyword">in</span> drawn_cards <span class="hljs-keyword">if</span> card[<span class="hljs-number">0</span>]])
+        pts = <span class="hljs-number">0</span>
+        <span class="hljs-keyword">for</span> pt <span class="hljs-keyword">in</span> drawn_cards:
+            pts += pt
+            <span class="hljs-keyword">if</span> pts &lt;= <span class="hljs-number">13</span>:
+                heal += <span class="hljs-number">1</span>
+            <span class="hljs-keyword">else</span>:
+                <span class="hljs-keyword">break</span>
+    <span class="hljs-built_in">print</span>(dmg)
+    <span class="hljs-keyword">return</span>
+
+main()
+</code></pre></div>
+<p><strong>C. 拼点</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">construct</span>(<span class="hljs-params">n</span>):</span>
+    <span class="hljs-keyword">if</span> n == <span class="hljs-string">&quot;A&quot;</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+    <span class="hljs-keyword">elif</span> n == <span class="hljs-string">&quot;B&quot;</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>
+    <span class="hljs-keyword">elif</span> n == <span class="hljs-string">&quot;C&quot;</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>
+    <span class="hljs-keyword">elif</span> n == <span class="hljs-string">&quot;D&quot;</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-number">4</span>
+    <span class="hljs-keyword">elif</span> n == <span class="hljs-string">&quot;J&quot;</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-number">11</span>
+    <span class="hljs-keyword">elif</span> n == <span class="hljs-string">&quot;Q&quot;</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-number">12</span>
+    <span class="hljs-keyword">elif</span> n == <span class="hljs-string">&quot;K&quot;</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-number">13</span>
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">int</span>(n)
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    n, m = <span class="hljs-built_in">map</span>(<span class="hljs-built_in">int</span>, <span class="hljs-built_in">input</span>().split())
+    a_points = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(construct, <span class="hljs-built_in">input</span>().split()))
+    a_colors = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(construct, <span class="hljs-built_in">input</span>().split()))
+    b_points = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(construct, <span class="hljs-built_in">input</span>().split()))
+    b_colors = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(construct, <span class="hljs-built_in">input</span>().split()))
+    a_points_max, a_colors_max = <span class="hljs-number">0</span>, <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):
+        <span class="hljs-keyword">if</span> a_points_max &lt; a_points[i]:
+            a_points_max, a_colors_max = a_points[i], a_colors[i]
+        <span class="hljs-keyword">elif</span> a_points_max == a_points[i] <span class="hljs-keyword">and</span> a_colors_max &lt; a_colors[i]:
+            a_colors_max = a_colors[i]
+    b_points_max, b_colors_max = <span class="hljs-number">0</span>, <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(m):
+        <span class="hljs-keyword">if</span> b_points_max &lt; b_points[i]:
+            b_points_max, b_colors_max = b_points[i], b_colors[i]
+        <span class="hljs-keyword">elif</span> b_points_max == b_points[i] <span class="hljs-keyword">and</span> b_colors_max &lt; b_colors[i]:
+            b_colors_max = b_colors[i]
+    <span class="hljs-keyword">if</span> a_points_max &gt; b_points_max:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Op Win&quot;</span>)
+    <span class="hljs-keyword">elif</span> a_points_max &lt; b_points_max:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Op Out&quot;</span>)
+    <span class="hljs-keyword">elif</span> a_colors_max &gt; b_colors_max:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Op Win&quot;</span>)
+    <span class="hljs-keyword">elif</span> a_colors_max &lt; b_colors_max:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Op Out&quot;</span>)
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;all Lost&quot;</span>)
+    <span class="hljs-keyword">return</span>
+
+main()
+</code></pre></div>
+<p><strong>D. 哈希冲突</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    n = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>())
+    a = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(<span class="hljs-built_in">int</span>, <span class="hljs-built_in">input</span>().split()))
+    b = &#123;&#125;
+    s = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):
+        <span class="hljs-keyword">if</span> a[i] <span class="hljs-keyword">in</span> b.keys():
+            s += <span class="hljs-number">1</span>
+            b[a[i]] = (b[a[i]] + i) / <span class="hljs-number">2</span>
+        <span class="hljs-keyword">else</span>:
+            b[a[i]] = i
+    <span class="hljs-built_in">print</span>(s)
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;%.6f&quot;</span> % (b[i] <span class="hljs-keyword">if</span> i <span class="hljs-keyword">in</span> b.keys() <span class="hljs-keyword">else</span> -<span class="hljs-number">1</span>), end=<span class="hljs-string">&quot; &quot;</span>)
+    <span class="hljs-keyword">return</span>
+
+main()
+</code></pre></div>
+<p><strong>E. 我们有两次逃课机会</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    <span class="hljs-built_in">input</span>()
+    a = <span class="hljs-built_in">sum</span>(<span class="hljs-built_in">map</span>(<span class="hljs-built_in">int</span>, <span class="hljs-built_in">input</span>().split()))
+    <span class="hljs-built_in">print</span>(a * <span class="hljs-number">14</span>)
+    <span class="hljs-keyword">return</span>
+
+main()
+</code></pre></div>
+<p><strong>F. Collatz Conjecture</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-built_in">print</span>(-<span class="hljs-number">1</span>)
+</code></pre></div>
+<p><strong>G. 芝士<span class="bd-box"><h-char class="bd bd-beg"><h-inner>，</h-inner></h-char></span>与你分享</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">sum</span>(<span class="hljs-built_in">map</span>(<span class="hljs-built_in">int</span>, <span class="hljs-built_in">input</span>().split())))
+    <span class="hljs-keyword">return</span>
+
+main()
+</code></pre></div>
+<p><strong>H. 来我家做客吧</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    <span class="hljs-built_in">input</span>()
+    a = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(<span class="hljs-built_in">int</span>, <span class="hljs-built_in">input</span>().split()))
+    x = <span class="hljs-built_in">max</span>(a) - <span class="hljs-built_in">min</span>(a)
+    <span class="hljs-built_in">print</span>(x)
+    <span class="hljs-keyword">return</span>
+
+main()
+</code></pre></div>
+<p><strong>I. 你说的对<span class="bd-box"><h-char class="bd bd-beg"><h-inner>，</h-inner></h-char></span>但是做不了一点</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    n, m = <span class="hljs-built_in">map</span>(<span class="hljs-built_in">int</span>, <span class="hljs-built_in">input</span>().split())
+    p = <span class="hljs-built_in">max</span>(<span class="hljs-built_in">map</span>(<span class="hljs-built_in">int</span>, <span class="hljs-built_in">input</span>().split()))
+    s = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(m):
+        a, b = <span class="hljs-built_in">map</span>(<span class="hljs-built_in">int</span>, <span class="hljs-built_in">input</span>().split())
+        <span class="hljs-keyword">if</span> <span class="hljs-number">27</span> * (a + b) / <span class="hljs-number">4</span> &gt;= p:
+            s += <span class="hljs-number">1</span>
+    <span class="hljs-built_in">print</span>(s)
+    <span class="hljs-keyword">return</span>
+
+main()
+</code></pre></div>
+<p><strong>J. 舰长<span class="bd-box"><h-char class="bd bd-beg"><h-inner>，</h-inner></h-char></span>该凹深渊了</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    n = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>())
+    a = &#123;&#125;
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):
+        name, time = <span class="hljs-built_in">input</span>().split()
+        time = <span class="hljs-built_in">int</span>(time)
+        <span class="hljs-keyword">if</span> name <span class="hljs-keyword">in</span> a.keys():
+            <span class="hljs-keyword">if</span> a[name] &gt; time:
+                a[name] = time
+        <span class="hljs-keyword">else</span>:
+            a[name] = time
+    <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;TannicAcid&quot;</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> a.keys():
+        <span class="hljs-built_in">print</span>(n + <span class="hljs-number">1</span>)
+        <span class="hljs-keyword">return</span>
+    r = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">for</span> name, time <span class="hljs-keyword">in</span> a.items():
+        <span class="hljs-keyword">if</span> name != <span class="hljs-string">&quot;TannicAcid&quot;</span> <span class="hljs-keyword">and</span> a[name] &lt; a[<span class="hljs-string">&quot;TannicAcid&quot;</span>]:
+            r += <span class="hljs-number">1</span>
+    <span class="hljs-built_in">print</span>(r)
+    <span class="hljs-keyword">return</span>
+
+main()
+</code></pre></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" rel="tag">程序设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" rel="tag">计算机科学</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../036225688ed8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          南师大 2024 年新生赛 (第三场) Python 题解
+        
+      </div>
+    </a>
+  
+  
+    <a href="../9abf8afe5af1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          南师大 2024 年新生赛 (第一场) Python 题解
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/%E6%95%99%E5%AD%A6/">教学</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/%E6%95%99%E5%AD%A6/%E4%B8%AD%E5%AD%A6/">中学</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="../categories/%E6%95%99%E5%AD%A6/%E6%9C%AC%E7%A7%91/">本科</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/%E8%A7%86%E8%A7%92/">视角</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="../categories/%E9%9A%8F%E6%83%B3/">随想</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../tags/C-C/" rel="tag">C/C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Python/" rel="tag">Python</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/%E4%B8%AD%E6%96%87%E9%98%85%E8%AF%BB/" rel="tag">中文阅读</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" rel="tag">概率论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" rel="tag">程序设计</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" rel="tag">计算机科学</a><span class="tag-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+        <p>Do it. With love.</p>
+      
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="../about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/jquery-1.4.3.min.js"></script>
+
+<script src="../fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+
+
+<script src="../js/script.js"></script>
+
+
+
+
+
+
+<script>
+  MathJax = {
+    options: {
+      enableMenu: false
+    },
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    }
+  };
+</script>
+<!-- <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+    CommonHTML: {
+      linebreaks: false
+    }
+  });
+  </script> -->
+<script type="text/javascript" id="MathJax-script" async
+  src="../mathjax/tex-chtml.js">
+</script>
+<!-- <script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
+</script> -->
+
+
+
+  </div>
+</body>
+</html>

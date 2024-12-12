@@ -1,9 +1,8 @@
 ---
 title: 2024 NNU Freshman Contest C++ 题解
-category: [计算机, C++]
-tags: [本科]
+category: [教学, 本科]
+tags: [计算机科学, 程序设计, C/C++]
 date: 2024/11/20
-toc: false
 ---
 
 本文的视频题解可以在 [哔哩哔哩](https://www.bilibili.com/video/BV1VbUHY5E8T/) 找到.

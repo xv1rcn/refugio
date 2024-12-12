@@ -5,7 +5,7 @@ menu:
   About: /about
 
 # Content
-excerpt_link: Read More
+excerpt_link: 阅读全文
 fancybox: true
 
 # Sidebar
@@ -20,7 +20,7 @@ copyright: |-
 # toc open 
 toc:
   enable: true
-  default: true
+  default: false
 
 # Widget behavior
 archive_type: 'monthly'
@@ -52,4 +52,4 @@ math:
 title-number: config
 
 # blockquote: italic | grey
-blockquote: grey
+blockquote: italic

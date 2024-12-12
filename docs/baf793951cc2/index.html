@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>关于 2023 年新高考一卷数学第 21 题的相关讨论 | Refugio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="本文主要就 2023 年普通高等学校招生全国统一考试(全国新课标 I 卷)数学第 21 题中涉及到的概率论中 Markov 链相关知识展开讨论, 剖析相似题型的统一解题路径.">
+  
+  
+  
+    <link rel="shortcut icon" href="../img/favicon.png">
+  
+  <link rel="stylesheet" href="../css/style.css">
+  
+    <link rel="stylesheet" href="../fancybox/jquery.fancybox-1.3.4.css">
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div id="nav-outer">
+  <nav id="main-nav" class="outer">
+    <a id="main-nav-toggle" class="nav-icon"></a>
+    
+      <a class="main-nav-link" href="../index.html">Home</a>
+    
+      <a class="main-nav-link" href="../archives">Archives</a>
+    
+      <a class="main-nav-link" href="../about">About</a>
+    
+    <div class="main-nav-space-between"></div>
+    
+  </nav>
+</div>
+<div id="header-title">
+  <h1 id="logo-wrap">
+    <a href="../index.html" id="logo">Refugio</a>
+  </h1>
+  
+</div>
+
+      <div id="content" class="outer">
+        <section id="main"><article id="post-关于 2023 年新高考一卷数学第 21 题的相关讨论" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="" class="article-date">
+  <time class="dt-published" datetime="2023-06-10T16:00:00.000Z" itemprop="datePublished">June 11th 2023</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="../categories/%E6%95%99%E5%AD%A6/">教学</a>►<a class="article-category-link" href="../categories/%E6%95%99%E5%AD%A6/%E4%B8%AD%E5%AD%A6/">中学</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      关于 2023 年新高考一卷数学第 21 题的相关讨论
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>本文主要就 2023 年普通高等学校招生全国统一考试(全国新课标 I 卷)数学第 21 题中涉及到的概率论中 Markov 链相关知识展开讨论, 剖析相似题型的统一解题路径.</p>
+<span id="more"></span>
+<h2 id="原题">原题</h2>
+<p>甲, 乙两人投篮, 每次由其中一人投篮, 规则如下: 若命中则此人继续投篮, 若未命中则换为对方投篮. 无论之前投篮情况如何, 甲每次投篮的命中率均为 <span class="markdown-them-math-inline">$0.6$</span>, 乙每次投篮的命中率均为 <span class="markdown-them-math-inline">$0.8$</span>, 由抽签决定第 <span class="markdown-them-math-inline">$1$</span> 次投篮的人选, 第 <span class="markdown-them-math-inline">$1$</span> 次投篮的人是甲, 乙的概率各为 <span class="markdown-them-math-inline">$0.5$</span>.</p>
+<p>(1) 求第 <span class="markdown-them-math-inline">$2$</span> 次投篮的人是乙的概率;</p>
+<p>(2) 求第 <span class="markdown-them-math-inline">$i$</span> 次投篮的人是甲的概率;</p>
+<p>(3) 已知: 若随机变量 <span class="markdown-them-math-inline">$X_i$</span> 服从两点分布, 且 <span class="markdown-them-math-inline">$P(X_i=1)=1-P(X_i=0)=q_i$</span>,<span class="markdown-them-math-inline">$i=1,2,\cdots,n$</span>, 则 <span class="markdown-them-math-inline">$E(\sum_{i=1}^n{X_i})=\sum_{i=1}^n{q_i}$</span>. 记前 <span class="markdown-them-math-inline">$n$</span> 次(即从第 <span class="markdown-them-math-inline">$1$</span> 次到第 <span class="markdown-them-math-inline">$n$</span> 次投篮)中甲投篮的次数为 <span class="markdown-them-math-inline">$Y$</span>, 求 <span class="markdown-them-math-inline">$E(Y)$</span>.</p>
+<h2 id="答案">答案</h2>
+<p>(1)<span class="markdown-them-math-inline">$0.6$</span>;(2)<span class="markdown-them-math-inline">$\frac{1}{3}+\frac{1}{6}\times(\frac{2}{5})^{i-1},i\in\mathbb{N^*}$</span>;(3)<span class="markdown-them-math-inline">$\frac{6n+5}{18}-\frac{1}{9}\times(\frac{2}{5})^{n-1}$</span>.</p>
+<h2 id="解析">解析</h2>
+<h3 id="第-(1) 问">第 (1) 问</h3>
+<p>第 (1) 问较为简单, 主要考察全概率公式.</p>
+<p>令甲投中的事件为 <span class="markdown-them-math-inline">$A$</span>, 乙投中的事件为 <span class="markdown-them-math-inline">$B$</span>, 甲第 <span class="markdown-them-math-inline">$i$</span> 次投篮的事件为 <span class="markdown-them-math-inline">$M_i$</span>. 那么甲没投中的事件即为 <span class="markdown-them-math-inline">$\overline{A}$</span>, 乙没投中的事件即为 <span class="markdown-them-math-inline">$\overline{B}$</span>, 乙第 <span class="markdown-them-math-inline">$i$</span> 次投篮的事件为 <span class="markdown-them-math-inline">$\overline{M_i}$</span>.</p>
+<p>由题可知, <span class="markdown-them-math-inline">$P(A)=0.6$</span>, <span class="markdown-them-math-inline">$P(\overline{A})=0.4$</span>, <span class="markdown-them-math-inline">$P(B)=0.8$</span>, <span class="markdown-them-math-inline">$P(\overline{B})=0.2$</span>, <span class="markdown-them-math-inline">$P(M_1)=P(\overline{M_1})=0.5$</span>.</p>
+<p>因此 <span class="markdown-them-math-inline">$P(\overline{M_2})=P(M_1)P(\overline{A})+P(\overline{M_1})P(B)=0.6$</span>.</p>
+<h3 id="第-(2) 问">第 (2) 问</h3>
+<p>第 (2) 问本质上是概率论中涉及到的 Markov 链的考察, 解决此类题目的关键是只专注于可能使<span class="bd-box"><h-char class="bd bd-end"><h-inner>“</h-inner></h-char></span>第 <span class="markdown-them-math-inline">$i$</span> 次是甲投篮<span class="bd-box"><h-char class="bd bd-beg"><h-inner>”</h-inner></h-char></span>的<em>一步到位</em>的情况, 而不要过多考虑, 避免把自己绕进逻辑循环当中.</p>
+<p>将 <span class="markdown-them-math-inline">$P(M_i)$</span> 简记为 <span class="markdown-them-math-inline">$P_i$</span>, 我们可以得到:</p>
+<ul>
+<li><span class="markdown-them-math-inline">$P_1=0.5$</span>,</li>
+<li><span class="markdown-them-math-inline">$P_i=P_{i-1}P(A)+(1-P_{i-1})P(\overline{B}),i\geq2,i\in\mathbb{N^*}$</span>.</li>
+</ul>
+<p>列出后式的意义是, 若第 <span class="markdown-them-math-inline">$i$</span> 次是投篮的人是甲, 则要么第 <span class="markdown-them-math-inline">$(i-1)$</span> 次投篮的人是甲且甲投中, 要么第 <span class="markdown-them-math-inline">$(i-1)$</span> 次投篮的人是乙且乙没投中. 随后根据全概率公式列出递推公式.</p>
+<p>由数列相关知识, 可以求得 <span class="markdown-them-math-inline">$P_i=\frac{1}{3}+\frac{1}{6}\times(\frac{2}{5})^{i-1},i\geq2,i\in\mathbb{N^*}$</span>. 代入 <span class="markdown-them-math-inline">$i=1$</span> 时 <span class="markdown-them-math-inline">$P_1$</span> 也符合此公式, 故第 <span class="markdown-them-math-inline">$i$</span> 次投篮的人是甲的概率 <span class="markdown-them-math-inline">$P_i=\frac{1}{3}+\frac{1}{6}\times(\frac{2}{5})^{i-1},i\in\mathbb{N^*}$</span>.</p>
+<p>综上所述, 在梳理题目条件时, 我们更需要关注并找出项与项之间存在的递推关系, 从而运用高中课纲内的数列求和等知识解题.</p>
+<h3 id="第-(3) 问">第 (3) 问</h3>
+<p>第 (3) 问是新概念的化用, 主要考察 <span class="markdown-them-math-inline">$E(Y)=\sum_{i=1}^n{P_i}$</span>, 随后由数列相关知识化简得 <span class="markdown-them-math-inline">$E(Y)=\frac{6n+5}{18}-\frac{1}{9}\times(\frac{2}{5})^{n-1}$</span>.</p>
+<p>只需要使用最基础的等比数列求和即可, 难度适中.</p>
+<h2 id="拓展">拓展</h2>
+<p>Markov 链可以用来研究试验在不同状态间变化时的某些概率,其特征可以简单理解为<span class="bd-box"><h-char class="bd bd-end"><h-inner>“</h-inner></h-char></span>未来只和现在有关, 与过去无关<span class="bd-box"><h-char class="bd bd-beg"><h-inner>”</h-inner></h-char></span>, 或叫做无记忆性.</p>
+<p>例如上题中<span class="bd-box"><h-char class="bd bd-end"><h-inner>“</h-inner></h-char></span>甲投篮<span class="bd-box"><h-char class="bd bd-beg"><h-inner>”</h-inner></h-char></span>和<span class="bd-box"><h-char class="bd bd-end"><h-inner>“</h-inner></h-char></span>乙投篮<span class="bd-box"><h-char class="bd bd-beg"><h-inner>”</h-inner></h-char></span>即为试验的两个状态, 且两个状态间的转移概率只与当时的状态相关. 正是具备了这种无记忆性, 我们才可以利用 Markov 链模型解决此类概率问题.</p>
+<p>一般解题过程为:</p>
+<ol>
+<li>确认题目具有无记忆性和转移概率恒定,</li>
+<li>写出试验的全部状态及状态间的转移概率,</li>
+<li>写出概率转移矩阵并利用矩阵幂求解.</li>
+</ol>
+<p>以下为例解.</p>
+<p>设<span class="bd-box"><h-char class="bd bd-end"><h-inner>“</h-inner></h-char></span>甲投篮<span class="bd-box"><h-char class="bd bd-beg"><h-inner>”</h-inner></h-char></span>和<span class="bd-box"><h-char class="bd bd-end"><h-inner>“</h-inner></h-char></span>乙投篮<span class="bd-box"><h-char class="bd bd-beg"><h-inner>”</h-inner></h-char></span>两个状态分别为 <span class="markdown-them-math-inline">$M$</span>, <span class="markdown-them-math-inline">$N$</span>, 初始状态概率 <span class="markdown-them-math-inline">$P_0=\left[\matrix{0.5&amp;0.5}\right]$</span>. 那么状态 <span class="markdown-them-math-inline">$M$</span> 变化为状态 <span class="markdown-them-math-inline">$M$</span> 的一步转移概率 <span class="markdown-them-math-inline">$P_{M\to M}=0.6$</span>, <span class="markdown-them-math-inline">$P_{M\to N}=0.4$</span>, <span class="markdown-them-math-inline">$P_{N\to M}=0.2$</span>, <span class="markdown-them-math-inline">$P_{N\to N}=0.8$</span>.</p>
+<p>从而写出一步转移概率矩阵 <span class="markdown-them-math-inline">$P_1=\left[\matrix{0.6&amp;0.4\\0.2&amp;0.8}\right]$</span>, 由此可以得到经过 <span class="markdown-them-math-inline">$k$</span> 次转移之后的概率矩阵</p>
+<p><div class="markdown-them-math-block">$$P_k=P_1^k=\left[\matrix{\frac{2}{3}\times(\frac{2}{5})^k+\frac{1}{3}&amp;-\frac{2}{3}\times(\frac{2}{5})^k+\frac{2}{3}\\-\frac{1}{3}\times(\frac{2}{5})^k+\frac{1}{3}&amp;\frac{1}{3}\times(\frac{2}{5})^k+\frac{2}{3}}\right]$$</div></p>
+<p>第 <span class="markdown-them-math-inline">$i$</span> 次投篮的人是甲的概率即为初始状态经过 <span class="markdown-them-math-inline">$i-1$</span> 次转移之后状态为 <span class="markdown-them-math-inline">$M$</span> 的概率</p>
+<p><div class="markdown-them-math-block">$$(P_0P_{i-1})\left[\matrix{1\\0}\right]=\frac{1}{3}+\frac{1}{6}\times(\frac{2}{5})^{i-1}$$</div></p>
+<p>另附, 记<span class="markdown-them-math-inline">$\alpha=a-1,\beta=b-1$</span>,</p>
+<p><div class="markdown-them-math-block">$$\left[\matrix{a&amp;-\alpha\\-\beta&amp;b}\right]^k=\frac{1}{\alpha+\beta}\left[\matrix{\beta+\alpha(\alpha+\beta+1)^k&amp;\alpha-\alpha(\alpha+\beta+1)^k\\\beta-\beta(\alpha+\beta+1)^k&amp;\alpha+\beta(\alpha+\beta+1)^k}\right]$$</div></p>
+<p>矩阵曾被包含在人教版选修 4-2 <span class="bd-box"><h-char class="bd bd-end"><h-inner>《</h-inner></h-char></span>矩阵与变换<span class="bd-box"><h-char class="bd bd-beg"><h-inner>》</h-inner></h-char></span>中. 尽管矩阵计算相关内容现已不包含在高中所需掌握知识范畴内, 但很容易作为新定义题型进行综合考察, 应该谨慎新高考改革背景下增加概率统计难度所带来的附加效应.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" rel="tag">概率论</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../58c305c2cf94/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          出逃记
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/%E6%95%99%E5%AD%A6/">教学</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/%E6%95%99%E5%AD%A6/%E4%B8%AD%E5%AD%A6/">中学</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="../categories/%E6%95%99%E5%AD%A6/%E6%9C%AC%E7%A7%91/">本科</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/%E8%A7%86%E8%A7%92/">视角</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="../categories/%E9%9A%8F%E6%83%B3/">随想</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../tags/C-C/" rel="tag">C/C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Python/" rel="tag">Python</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/%E4%B8%AD%E6%96%87%E9%98%85%E8%AF%BB/" rel="tag">中文阅读</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" rel="tag">概率论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" rel="tag">程序设计</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" rel="tag">计算机科学</a><span class="tag-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+        <p>Do it. With love.</p>
+      
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="../about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/jquery-1.4.3.min.js"></script>
+
+<script src="../fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+
+
+<script src="../js/script.js"></script>
+
+
+
+
+
+
+<script>
+  MathJax = {
+    options: {
+      enableMenu: false
+    },
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    }
+  };
+</script>
+<!-- <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+    CommonHTML: {
+      linebreaks: false
+    }
+  });
+  </script> -->
+<script type="text/javascript" id="MathJax-script" async
+  src="../mathjax/tex-chtml.js">
+</script>
+<!-- <script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
+</script> -->
+
+
+
+  </div>
+</body>
+</html>
