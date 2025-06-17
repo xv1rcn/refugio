@@ -475,52 +475,28 @@ button::-moz-focus-inner {
   src: url("fonts/lmroman10-bolditalic.ttf");
 }
 @font-face {
-  font-family: Chinese;
-  font-style: normal;
-  font-weight: normal;
-  src: url("fonts/HYShuSongErS.ttf");
-}
-@font-face {
-  font-family: Chinese;
-  font-style: normal;
-  font-weight: bold;
-  src: url("fonts/FZHTJW.ttf");
-}
-@font-face {
-  font-family: Chinese;
-  font-style: italic;
-  font-weight: normal;
-  src: url("fonts/FZKTJW.ttf");
-}
-@font-face {
-  font-family: ChineseMono;
-  font-style: normal;
-  font-weight: normal;
-  src: url("fonts/HYFangSongJ.ttf");
-}
-@font-face {
   font-family: biaodian;
   font-style: normal;
   font-weight: normal;
-  src: url("fonts/biaodian.ttf");
+  src: url("fonts/biaodian-minus59.ttf");
 }
 @font-face {
   font-family: biaodian;
   font-style: italic;
   font-weight: normal;
-  src: url("fonts/biaodian.ttf");
+  src: url("fonts/biaodian-minus59.ttf");
 }
 @font-face {
   font-family: biaodian;
   font-style: normal;
   font-weight: bold;
-  src: url("fonts/biaodian.ttf");
+  src: url("fonts/biaodian-minus59.ttf");
 }
 @font-face {
   font-family: biaodian;
   font-style: italic;
   font-weight: bold;
-  src: url("fonts/biaodian.ttf");
+  src: url("fonts/biaodian-minus59.ttf");
 }
 html {
   scroll-padding-top: 80px;
@@ -1014,7 +990,8 @@ a.article-title:hover {
 .article-entry ul li input {
   margin-right: 10px;
 }
-.article-entry mjx-container {
+.article-entry .markdown-them-math-block,
+.article-entry .markdown-them-math-inline {
   overflow: auto;
   overflow-y: hidden;
   outline: 0;
